@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.high-priority {
+  color: red;
+}
+.medium-priority {
+  color: orange;
+}
+.low-priority {
+  color: green;
+}
