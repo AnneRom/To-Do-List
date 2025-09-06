@@ -1,8 +1,14 @@
-function TaskList() {
+import TaskItem from "./TaskItem";
+
+function TaskList( {tasks} ) {
   return (
-    <header>
-      <h1>Список завдань</h1>
-    </header>
+    <ul>
+        {tasks.map((task) => (
+            <TaskItem key={task.id} task={task.text} priority={task.priority}/>
+        ))}
+
+        
+    </ul>
   );
 }
 

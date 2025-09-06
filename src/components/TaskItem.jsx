@@ -1,8 +1,9 @@
-function TaskItem() {
+function TaskItem( { task, priority = "Medium" } ) {
   return (
-    <header>
-      <h1>Список завдань</h1>
-    </header>
+    <li>
+        {task} - <strong>{priority}</strong>
+        <button>Delete</button>
+    </li>
   );
 }
 
