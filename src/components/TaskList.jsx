@@ -1,8 +1,10 @@
+import clsx from "clsx";
 import TaskItem from "./TaskItem";
 
 function TaskList( {tasks} ) {
   return (
-    <ul>
+    <ul className={clsx("task-list", tasks.length >= 10 ? "many-tasks" : "few-tasks")}>
+
         {/* аналог if */}
         {tasks.length === 0 && <p>No tasks available</p>}
 
