@@ -10,7 +10,7 @@ function TaskList( {tasks} ) {
 
         {tasks.map((task) => ( 
             <TaskItem 
-            key={task.id} 
+            key={task.id} //1
             task={task.priority === "High" ? `!!! ${task.text}` : task.text} //аналог if-else
             priority={task.priority}/>
         ))}  
