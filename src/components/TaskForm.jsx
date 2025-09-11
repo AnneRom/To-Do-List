@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const FeedbackSchema = Yup.object().shape({
@@ -8,14 +7,10 @@ const FeedbackSchema = Yup.object().shape({
 });
 
 function TaskForm( { onAdd } ) {
-  const [text, setText] = useState("")
-  const [priority, setPriority] = useState("Medium")
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!text) return;
-    onAdd(text, priority);
-    setText("");
+  const handleSubmit = (values, actions) => {
+    onAdd(values.text, values.priority);
+    actions.resetForm();
   }
 
   return (
@@ -23,19 +18,17 @@ function TaskForm( { onAdd } ) {
         <Form>
             <Field type="text"
             name="text" 
-            placeholder="New task..." 
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-        />
-        <Field as="select" 
-        name="priority" 
-        value={priority} 
-        onChange={(e) => setPriority(e.target.value)}>
+            placeholder="New task..."/>
+            
+           <Field as="select" 
+            name="priority">
             <option value="High">High</option>
             <option value="Medium">Medium</option>
             <option value="Low">Low</option>
         </Field>
         <button type="submit">Add task</button>
+        <br />
+        <ErrorMessage name="text" component="span" style={{ color: "red", fontSize: "0.8rem" }}/>
         </Form>
     </Formik>
     
