@@ -7,14 +7,14 @@ import { useState } from 'react'
 
 function App() {
   const [tasks, setTasks] = useState([
-    { id: 1, text: "Learn React", priority: "High" },
-    { id: 2, text: "Build a To-Do App", priority: "Medium" },
-    { id: 3, text: "Profit!", priority: "Low" },
-    { id: 4, text: "Profit!" },
-    { id: 5, text: "Learn React", priority: "High" },
-    { id: 6, text: "Build a To-Do App", priority: "Medium" },
-    { id: 7, text: "Profit!", priority: "Low" },
-    { id: 8, text: "Profit!" },
+    { id: 1, text: "Learn React", priority: "High", completed: false },
+    { id: 2, text: "Build a To-Do App", priority: "Medium", completed: true },
+    { id: 3, text: "Profit!", priority: "Low", completed: false },
+    { id: 4, text: "Profit!", completed: false },
+    { id: 5, text: "Learn React", priority: "High", completed: false },
+    { id: 6, text: "Build a To-Do App", priority: "Medium", completed: false },
+    { id: 7, text: "Profit!", priority: "Low", completed: false },
+    { id: 8, text: "Profit!", completed: false },
     // { id: 9, text: "Learn React", priority: "High" },
     // { id: 10, text: "Build a To-Do App", priority: "Medium" },
     // { id: 11, text: "Profit!", priority: "Low" },
@@ -25,16 +25,28 @@ function App() {
      const newTask = {
       id: Date.now(),
       text,
-      priority
+      priority,
+      completed: false
      };
      setTasks([...tasks, newTask]);
+  }
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter(task => task.id !== id));
+  }
+  const toggleTask = (id) => {
+    setTasks(tasks.map(task => 
+      task.id === id ? { ...task, completed: !task.completed } : task
+    ));
   }
 
   return (
     <>
       <Header />
       <TaskForm onAdd={addTask}/>
-      <TaskList tasks={tasks}/>
+      <TaskList tasks={tasks} onDelete={deleteTask} 
+      // onToggle={toggleTask}
+      />
     </>
   )
 }
