@@ -1,9 +1,7 @@
 import clsx from "clsx";
 import TaskItem from "./TaskItem";
 
-function TaskList( {tasks, onDelete
-    // , onToggle
-} ) {
+function TaskList( {tasks, onDelete , onToggle} ) {
   return (
     <ul className={clsx("task-list", tasks.length >= 10 ? "many-tasks" : "few-tasks")}>
 
@@ -13,10 +11,10 @@ function TaskList( {tasks, onDelete
         {tasks.map((task) => ( 
             <TaskItem 
             key={task.id} //1
-            task={task.priority === "High" ? `!!! ${task.text}` : task.text} //аналог if-else
-            priority={task.priority}
+            task={task} 
             onDelete={() => onDelete(task.id)}
-            // onToggle={() => onToggle(task.id)}
+            onToggle={() => onToggle(task.id)}
+
             />
         ))}  
 

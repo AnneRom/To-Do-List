@@ -1,37 +1,18 @@
-// import clsx from "clsx";
-
-// function TaskItem( { task, priority = "Medium", onDelete, completed, onToggle } ) {
-//   return (
-//     <li className={clsx(
-//         "task-item",
-//         priority === "High" && "high-priority",
-//         priority === "Medium" && "medium-priority",
-//         priority === "Low" && "low-priority",
-//         completed && "completed"
-//       )}>
-//         <input type="checkbox" checked={completed} onChange={onToggle}/>
-//         {task}
-//         <button onClick={onDelete}>Delete</button>
-//     </li>
-//   );
-// }
-
-// export default TaskItem;
-
-
 import clsx from "clsx";
 
-function TaskItem( { task, priority = "Medium", onDelete } ) {
+function TaskItem( { task, onDelete, onToggle } ) {
   return (
-    <li className={clsx(
-        "task-item",
-        priority === "High" && "high-priority",
-        priority === "Medium" && "medium-priority",
-        priority === "Low" && "low-priority",
-        // completed && "completed"
-      )}>
-        {/* <input type="checkbox" checked={completed} onChange={onToggle}/> */}
-        {task}
+    <li className="task-item">
+        <input type="checkbox" checked={task.completed} onChange={onToggle}/>
+         {/* аналог if-else */}
+         <span className={clsx(
+            task.completed && "completed",
+            task.priority === "High" && "high-priority",
+            task.priority === "Medium" && "medium-priority",
+            task.priority === "Low" && "low-priority"
+         )}>
+            {task.text}
+         </span>
         <button onClick={onDelete}>Delete</button>
     </li>
   );

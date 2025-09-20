@@ -30,6 +30,7 @@
 }
 .high-priority {
   color: red;
+  text-decoration: underline;
 }
 .medium-priority {
   color: orange;

@@ -10,11 +10,11 @@ function App() {
     { id: 1, text: "Learn React", priority: "High", completed: false },
     { id: 2, text: "Build a To-Do App", priority: "Medium", completed: true },
     { id: 3, text: "Profit!", priority: "Low", completed: false },
-    { id: 4, text: "Profit!", completed: false },
+    { id: 4, text: "Profit!",  priority: "Low", completed: false },
     { id: 5, text: "Learn React", priority: "High", completed: false },
     { id: 6, text: "Build a To-Do App", priority: "Medium", completed: false },
     { id: 7, text: "Profit!", priority: "Low", completed: false },
-    { id: 8, text: "Profit!", completed: false },
+    { id: 8, text: "Profit!",  priority: "Low", completed: false },
     // { id: 9, text: "Learn React", priority: "High" },
     // { id: 10, text: "Build a To-Do App", priority: "Medium" },
     // { id: 11, text: "Profit!", priority: "Low" },
@@ -40,13 +40,25 @@ function App() {
     ));
   }
 
+  const order = {
+    High: 1,
+    Medium: 2,
+    Low: 3
+  };
+  const sortedTasks = [...tasks].sort((a, b) => {
+    if (a.completed !== b.completed) {
+      return a.completed ? 1 : -1; 
+    }
+
+    return order[a.priority] - order[b.priority];
+  });
+
+
   return (
     <>
       <Header />
       <TaskForm onAdd={addTask}/>
-      <TaskList tasks={tasks} onDelete={deleteTask} 
-      // onToggle={toggleTask}
-      />
+      <TaskList tasks={sortedTasks} onDelete={deleteTask} onToggle={toggleTask}/>
     </>
   )
 }
