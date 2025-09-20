@@ -21,6 +21,35 @@ function App() {
     // { id: 12, text: "Profit!" }
   ]);
 
+  const names = ["Anna", "ben", "Charlie", "andriy", "David", "Bob"];
+
+  const sorted = [...names].sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }));
+  console.log(sorted)
+  
+  // const nums = [100, -3, 25, 0, -45, 8, 23, -1];//за спаданням від більшого до меншого
+
+  // const users = [
+  //   { id: 1, name: "Anna", age: 25 },
+  //   { id: 2, name: "Ben", age: 17 },
+  //   { id: 3, name: "Charlie", age: 40 },
+  //   { id: 4, name: "Andriy", age: 16 },
+  //   { id: 5, name: "David", age: 30 }] //за зростанням від меншого до більшого (спочатку молодщі потим старші)
+
+
+const users = [
+  { id: 1, name: "Anna", age: 25 },
+  { id: 2, name: "Ben", age: 17 },
+  { id: 3, name: "Charlie", age: 40 },
+  { id: 4, name: "Andriy", age: 16 },
+  { id: 5, name: "David", age: 30 }] //за зростанням від меншого до більшого (спочатку молодщі потим старші)
+  
+  const sorted1 = [...users].sort((a, b) => a.age - b.age);
+  console.log(sorted1)
+
+  const sorted2 = [...users].sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' }));
+  console.log(sorted2)
+
+  
   const addTask = (text, priority = "Medium") => {
      const newTask = {
       id: Date.now(),
