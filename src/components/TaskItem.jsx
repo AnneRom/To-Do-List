@@ -1,7 +1,17 @@
 import clsx from "clsx";
 
 function TaskItem( { task, onDelete, onToggle } ) {
-  return (
+    const deadlineDate = task.deadline ? new Date(task.deadline) : null;
+    const formattedDeadline = deadlineDate ? deadlineDate.toLocaleDateString("uk-UA", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    }) : null;
+
+    const now = new Date();
+    const isOverdue = deadlineDate && !task.completed && deadlineDate < now;
+  
+    return (
     <li className="task-item">
         <input type="checkbox" checked={task.completed} onChange={onToggle}/>
          {/* аналог if-else */}
@@ -13,6 +23,10 @@ function TaskItem( { task, onDelete, onToggle } ) {
          )}>
             {task.text}
          </span>
+        {formattedDeadline && <div className={clsx(
+            "deadline",
+            isOverdue && "overdue"
+         )}>{formattedDeadline}</div>}
         <button onClick={onDelete}>Delete</button>
     </li>
   );

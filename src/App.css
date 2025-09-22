@@ -8,7 +8,7 @@
 .task-list {
   list-style: none;
   padding: 10px;
-  max-width: 400px;
+  max-width: 700px;
   margin: 0 auto;
 }
 .many-tasks 
@@ -41,4 +41,13 @@
 .completed {
   text-decoration: line-through;
   color: gray;
+}
+
+.deadline {
+  font-size: 0.8rem;
+  color: #555;
+}
+.overdue {
+  color: red;
+  font-weight: bold;
 }
