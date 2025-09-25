@@ -4,7 +4,7 @@ import * as Yup from "yup";
 const FeedbackSchema = Yup.object().shape({
   text: Yup.string().min(5, "Too Short!").max(100, "Too Long!").required("Required"),
   priority: Yup.string().oneOf(["High", "Medium", "Low"]).required("Required"),
-  deadline: Yup.date().nullable().min(new Date().toISOString().split("T")[0], "Deadline can't be in the past")
+  deadline: Yup.date().nullable().min(new Date(), "Deadline can't be in the past")
 });
 
 function TaskForm( { onAdd } ) {
@@ -27,7 +27,7 @@ function TaskForm( { onAdd } ) {
             <option value="Medium">Medium</option>
             <option value="Low">Low</option>
         </Field>
-           <Field type="date" name="deadline" />
+           <Field type="datetime-local" name="deadline" />
         <button type="submit">Add task</button>
         <br />
         <ErrorMessage name="text" component="span" style={{ color: "red", fontSize: "0.8rem" }}/>

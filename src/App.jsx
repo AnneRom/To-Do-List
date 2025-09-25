@@ -3,23 +3,27 @@ import './App.css'
 import Header from './components/Header'
 import TaskList from './components/TaskList'
 import TaskForm from './components/TaskForm'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
   const [tasks, setTasks] = useState([
-    { id: 1, text: "Learn React", priority: "High", completed: false },
-    // { id: 2, text: "Build a To-Do App", priority: "Medium", completed: true },
-    // { id: 3, text: "Profit!", priority: "Low", completed: false },
-    // { id: 4, text: "Profit!",  priority: "Low", completed: false },
-    // { id: 5, text: "Learn React", priority: "High", completed: false },
-    // { id: 6, text: "Build a To-Do App", priority: "Medium", completed: false },
-    // { id: 7, text: "Profit!", priority: "Low", completed: false },
-    // { id: 8, text: "Profit!",  priority: "Low", completed: false },
-    // { id: 9, text: "Learn React", priority: "High" },
-    // { id: 10, text: "Build a To-Do App", priority: "Medium" },
-    // { id: 11, text: "Profit!", priority: "Low" },
-    // { id: 12, text: "Profit!" }
+    // { id: 1, text: "Learn React", priority: "High", completed: false },
   ]);
+
+  useEffect(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    console.log("Loaded tasks from localStorage:", savedTasks);
+
+    if (savedTasks) {
+      setTasks(JSON.parse(savedTasks));
+      console.log("Parsed tasks:", JSON.parse(savedTasks));
+    }
+  }, []);
+  
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    console.log("Saved tasks to localStorage:", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (text, priority = "Medium", deadline = null) => {
      const newTask = {
@@ -53,11 +57,9 @@ function App() {
 
     if (a.deadline && b.deadline) {
       return new Date(a.deadline) - new Date(b.deadline);
-    } else if (a.deadline && !b.deadline) {
-      return -1; 
-    } else if (!a.deadline && b.deadline) {
-      return 1;
-    }
+    } else if (a.deadline !== b.deadline) {
+      return a.deadline ? -1 : 1; 
+    } 
 
     return order[a.priority] - order[b.priority];
   });

@@ -2,10 +2,12 @@ import clsx from "clsx";
 
 function TaskItem( { task, onDelete, onToggle } ) {
     const deadlineDate = task.deadline ? new Date(task.deadline) : null;
-    const formattedDeadline = deadlineDate ? deadlineDate.toLocaleDateString("uk-UA", {
+    const formattedDeadline = deadlineDate ? deadlineDate.toLocaleString("uk-UA", {
         day: "2-digit",
-        month: "long",
-        year: "numeric"
+        month: "2-digit", // or "long" for full month name
+        year: "2-digit", // or "numeric" for full year
+        hour: "2-digit",
+        minute: "2-digit"
     }) : null;
 
     const now = new Date();
