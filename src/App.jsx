@@ -4,6 +4,7 @@ import Header from './components/Header'
 import TaskList from './components/TaskList'
 import TaskForm from './components/TaskForm'
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -15,14 +16,41 @@ function App() {
     console.log("Loaded tasks from localStorage:", savedTasks);
 
     if (savedTasks) {
-      setTasks(JSON.parse(savedTasks));
-      console.log("Parsed tasks:", JSON.parse(savedTasks));
+      try {
+        const parsedTasks = JSON.parse(savedTasks);
+        console.log("Parsed tasks:", JSON.parse(savedTasks));
+        setTasks(parsedTasks); 
+        return
+      } catch (e) {
+        console.error("Failed to parse tasks from localStorage:", e);
+        localStorage.removeItem("tasks"); 
+      }
+    } else {
+      async function fetchTasks() {
+      try {
+        const response = await axios.get(
+        "https://my-json-server.typicode.com/AnneRom/TO-DO-LIST-API/tasks"
+        );
+        setTasks(response.data);
+      } catch (e) {
+        console.error("Error fetching tasks:", e);
+      }
     }
+
+    fetchTasks();
+    }
+
   }, []);
-  
+
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    console.log("Saved tasks to localStorage:", JSON.stringify(tasks));
+    if (tasks.length > 0) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      console.log("Saved tasks to localStorage:", JSON.stringify(tasks));
+    } else {
+      localStorage.removeItem("tasks");
+      console.log("Removed tasks from localStorage");
+    }
+    
   }, [tasks]);
 
   const addTask = (text, priority = "Medium", deadline = null) => {
