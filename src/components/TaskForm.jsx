@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import styles from "./TaskForm.module.css";
 
 const FeedbackSchema = Yup.object().shape({
   text: Yup.string().min(5, "Too Short!").max(100, "Too Long!").required("Required"),
@@ -16,20 +17,17 @@ function TaskForm( { onAdd } ) {
 
   return (
     <Formik onSubmit={handleSubmit} initialValues={{ text: "", priority: "Medium", deadline: ""}} validationSchema={FeedbackSchema}>
-        <Form>
-            <Field type="text"
-            name="text" 
-            placeholder="New task..."/>
-
-           <Field as="select" 
-            name="priority">
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-        </Field>
-           <Field type="datetime-local" name="deadline" />
-        <button type="submit">Add task</button>
-        <br />
+        <Form className={styles.form}>
+            <div className={styles.formWrapper}>
+                <Field type="text" name="text" placeholder="New task..."/>
+                <Field as="select" name="priority">
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </Field>
+                <Field type="datetime-local" name="deadline" />
+                <button type="submit">Add task</button>
+            </div>
         <ErrorMessage name="text" component="span" style={{ color: "red", fontSize: "0.8rem" }}/>
         <ErrorMessage name="deadline" component="span" style={{ color: "red", fontSize: "0.8rem" }}/>
         </Form>
