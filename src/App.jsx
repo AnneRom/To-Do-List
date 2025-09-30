@@ -5,6 +5,7 @@ import TaskList from './components/TaskList'
 import TaskForm from './components/TaskForm'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import LanguageSelector from './components/LanguageSelector'
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -95,6 +96,7 @@ function App() {
 
   return (
     <>
+      <LanguageSelector />
       <Header />
       <TaskForm onAdd={addTask}/>
       <TaskList tasks={sortedTasks} onDelete={deleteTask} onToggle={toggleTask}/>

@@ -1,0 +1,44 @@
+.langSelector {
+  position: relative;
+  display: inline-block;
+  color: #333;
+}
+
+.langSelector button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  color: black;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 4px;
+  z-index: 10;
+}
+
+.dropdown li {
+  list-style: none;
+}
+
+.dropdown button {
+  padding: 6px 12px;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown button:hover {
+  background-color: #f0f0f0;
+}

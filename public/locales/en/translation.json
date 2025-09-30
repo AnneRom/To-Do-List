@@ -1,0 +1,14 @@
+{
+    "title": "Task List",
+    "taskPlaceholder": "New Task...",
+    "priority": "Priority",
+    "priorityHigh": "High",
+    "priorityMedium": "Medium",
+    "priorityLow": "Low",
+    "errorRequired": "Required!",
+    "errorTooShort": "Too short!",
+    "errorTooLong": "Too long!",
+    "addTask": "Add Task",
+    "dateTime": "Date and Time",
+    "errordeadline": "Deadline can't be in the past"
+}

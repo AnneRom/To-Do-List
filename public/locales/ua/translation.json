@@ -1,0 +1,14 @@
+{
+    "title": "Список завдань",
+    "taskPlaceholder": "Нове завдання...",
+    "priority": "Пріоритетність",
+    "priorityHigh": "Висока",
+    "priorityMedium": "Середня",
+    "priorityLow": "Низька",
+    "errorRequired": "Обов'язково до заповнення!",
+    "errorTooShort": "Занадто коротке завдання!",
+    "errorTooLong": "Занадто довге завдання!",
+    "addTask": "Додати завдання",
+    "dateTime": "Дата і час",
+    "errordeadline": "Термін виконання не може бути в минулому"
+}
