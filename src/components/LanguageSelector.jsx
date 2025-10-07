@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown } from 'lucide-react';
 import styles from './LanguageSelector.module.css';
+import clsx from 'clsx';
 
 const LanguageSelector = () => {
   const { i18n } = useTranslation();
@@ -17,15 +18,20 @@ const LanguageSelector = () => {
   const toggleDropdown = () => setOpen((prev) => !prev);
 
   const handleChangeLanguage = (code) => {
-    i18n.changeLanguage(code);
-    setOpen(false);
+    if (code === currentLang) {
+      setOpen(false);
+    } else {
+      i18n.changeLanguage(code);
+      setOpen(false);
+    }
+    
   };
 
   return (
     <div className={styles.langSelector}>
-      <button onClick={toggleDropdown}>
+      <button onClick={toggleDropdown} className={clsx(open && styles.active)}>
         {currentLang.toUpperCase()}
-        <ChevronDown size={16} />
+        <ChevronDown size={16} className={clsx(styles.downIcon, open && styles.activeIcon)}/>
       </button>
 
       {open && (
@@ -34,7 +40,6 @@ const LanguageSelector = () => {
             <li key={lang.code}>
               <button
                 onClick={() => handleChangeLanguage(lang.code)}
-                disabled={currentLang === lang.code}
               >
                 {lang.label}
               </button>
