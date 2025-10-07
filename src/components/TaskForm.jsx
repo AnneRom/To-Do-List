@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./TaskForm.module.css";
 import { useTranslation } from 'react-i18next'
+import { MdOutlineAdd } from 'react-icons/md';
 
 
 
@@ -38,7 +39,9 @@ function TaskForm( { onAdd } ) {
                     <label htmlFor="deadline">{t('dateTime')}:</label>
                     <Field type="datetime-local" name="deadline" /> 
                 </div>
-                <button type="submit">Add task</button>
+                <button type="submit">
+                    <MdOutlineAdd size={24} color="#333"/>
+                </button>
             </div>
         <ErrorMessage name="text" component="span"/>
         <ErrorMessage name="deadline" component="span"/>
