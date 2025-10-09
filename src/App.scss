@@ -1,3 +1,6 @@
+@use "sass:math";
+@import "./styles/mixins.scss";
+
 * {
   box-sizing: border-box;
   font-family: 'Inter', system-ui, sans-serif;

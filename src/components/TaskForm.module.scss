@@ -1,0 +1,79 @@
+@use "sass:math";
+@import "../styles/mixins.scss";
+
+.form {
+    background: #fff;
+    @include adaptiveValue("padding", 24, 10, 0, 1400, 320);
+    @include adaptiveValue("border-radius", 16, 8, 0, 1400, 320);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); 
+    @include adaptiveValue("width", 1000, 300, 0, 1400, 320);
+    @include adaptiveValue("margin-bottom", 32, 16, 0, 1400, 320);
+}
+.formWrapper {
+    display: flex;
+    gap: toRem(10);
+    justify-content: space-between;
+    align-items: center;
+}
+.formField {
+    display: flex;
+    flex-direction: column;
+    @include adaptiveValue("gap", 8, 4, 0, 1400, 320);
+    text-align: left;
+    @include adaptiveValue("font-size", 14, 10, 0, 1400, 320);
+    font-weight: 300;
+}
+.form input[type="text"], 
+.form input[type="datetime-local"], 
+.form input[type="time"],
+.form select {
+    @include adaptiveValue("padding", 12, 8, 0, 1400, 320);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    @include adaptiveValue("font-size", 16, 12, 0, 1400, 320);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fdfdfd;
+    width: 100%;
+    color: #333;
+}
+
+.form input:focus, .form select:focus {
+    border-color: #d9e7ff;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    outline: none;
+}
+.form input[type="text"], 
+.form input[type="datetime-local"], 
+.form input[type="time"]
+{
+    @include adaptiveValue("width", 250, 70, 0, 1400, 320);
+}
+.form select {
+    @include adaptiveValue("width", 150, 60, 0, 1400, 320);
+}
+
+.form span {
+    color: #E03636;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.form button {
+    background: #d9e7ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    @include adaptiveValue("width", 50, 30, 0, 1400, 320);
+    @include adaptiveValue("height", 50, 30, 0, 1400, 320);
+    padding: 2px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form button:hover {
+    border-color: #d9e7ff;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    outline: none;
+}
+.addIcon {
+    @include adaptiveValue("font-size", 48, 28, 0, 1400, 320);
+    color: #333;
+}

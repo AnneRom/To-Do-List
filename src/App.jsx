@@ -1,5 +1,5 @@
 // import { useState } from 'react'
-import './App.css'
+import './App.scss'
 import Header from './components/Header'
 import TaskList from './components/TaskList'
 import TaskForm from './components/TaskForm'
@@ -97,9 +97,11 @@ function App() {
   return (
     <>
       <LanguageSelector />
+      <div className="mainContainer">
       <Header />
       <TaskForm onAdd={addTask}/>
       <TaskList tasks={sortedTasks} onDelete={deleteTask} onToggle={toggleTask}/>
+       </div>
     </>
   )
 }
