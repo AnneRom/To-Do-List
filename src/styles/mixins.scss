@@ -50,14 +50,6 @@ $responsiveType: 1;
 	@return $result;
 }
 
-[class*="Container"] {
-	max-width: toRem($maxWidthContainer);
-	min-width: toRem($minWidth);
-	padding-left: toRem($containerPadding);
-	padding-right: toRem($containerPadding);
-	margin: 0 auto;
-}
-
 
 //Currency
 @mixin currency($sym) {
@@ -178,4 +170,13 @@ $responsiveType: 1;
 			grid-column: 3 / 4;
 		}
 	}
+}
+
+[class*="Container"] {
+	max-width: toRem($maxWidthContainer);
+	min-width: toRem($minWidth);
+	@include adaptiveValue("padding-left", $containerPadding, 10, 0, 1400, 320);
+	@include adaptiveValue("padding-right", $containerPadding, 10, 0, 1400, 320);
+	@include adaptiveValue("width", 1000, 300, 0, 1400, 320);
+	margin: 0 auto;
 }

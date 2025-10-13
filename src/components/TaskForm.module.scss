@@ -6,8 +6,6 @@
     @include adaptiveValue("padding", 24, 10, 0, 1400, 320);
     @include adaptiveValue("border-radius", 16, 8, 0, 1400, 320);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); 
-    @include adaptiveValue("width", 1000, 300, 0, 1400, 320);
-    @include adaptiveValue("margin-bottom", 32, 16, 0, 1400, 320);
 }
 .formWrapper {
     display: flex;
@@ -15,22 +13,25 @@
     justify-content: space-between;
     align-items: center;
 }
+.formWrapper:not(:last-child) {
+    margin-bottom: toRem(10);
+}
 .formField {
     display: flex;
     flex-direction: column;
     @include adaptiveValue("gap", 8, 4, 0, 1400, 320);
     text-align: left;
-    @include adaptiveValue("font-size", 14, 10, 0, 1400, 320);
+    @include adaptiveValue("font-size", 12, 8, 0, 1400, 320);
     font-weight: 300;
 }
 .form input[type="text"], 
 .form input[type="datetime-local"], 
 .form input[type="time"],
 .form select {
-    @include adaptiveValue("padding", 12, 8, 0, 1400, 320);
+    @include adaptiveValue("padding", 12, 4, 0, 1400, 320);
     border: 1px solid #ddd;
     border-radius: 8px;
-    @include adaptiveValue("font-size", 16, 12, 0, 1400, 320);
+    @include adaptiveValue("font-size", 16, 10, 0, 1400, 320);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     background-color: #fdfdfd;
     width: 100%;
@@ -55,11 +56,11 @@
 .form span {
     color: #E03636;
     font-weight: 700;
-    font-size: 0.8rem;
+    @include adaptiveValue("font-size", 12, 8, 0, 1400, 320);
 }
 
 .form button {
-    background: #d9e7ff;
+    background: transparent;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -67,6 +68,7 @@
     @include adaptiveValue("height", 50, 30, 0, 1400, 320);
     padding: 2px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    align-self: flex-end;
 }
 .form button:hover {
     border-color: #d9e7ff;
@@ -74,6 +76,6 @@
     outline: none;
 }
 .addIcon {
-    @include adaptiveValue("font-size", 48, 28, 0, 1400, 320);
+    @include adaptiveValue("font-size", 46, 26, 0, 1400, 320);
     color: #333;
 }

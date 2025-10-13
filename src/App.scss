@@ -1,9 +1,11 @@
 @use "sass:math";
 @import "./styles/mixins.scss";
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
 * {
   box-sizing: border-box;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 #root {
   max-width: 1280px;
@@ -18,12 +20,16 @@ body {
   color: #333;
   position: relative;
 }
-h1 {
-  text-align: center;
-  color: #2d3436;
-  font-weight: 800;
-  margin-bottom: 20px;
-  font-size: 40px;
+header {
+   @include adaptiveValue("margin-bottom", 8, 4, 0, 1400, 320);
+}
+header p {
+  text-align: left;
+  font-weight: 600;
+  margin: 0;
+  opacity: 0.6;
+  @include adaptiveValue("font-size", 12, 8, 0, 1400, 320);
+  @include adaptiveValue("padding", 24, 10, 0, 1400, 320);
 }
 
 .task-list {

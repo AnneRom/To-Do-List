@@ -1,5 +1,5 @@
 {
-    "title": "Task List",
+    "title": "* this is a simple to-do list app where you can add and manage your tasks. Easily keep track of what you need to do!",
     "taskPlaceholder": "New Task...",
     "priority": "Priority",
     "priorityHigh": "High",

@@ -98,8 +98,8 @@ function App() {
     <>
       <LanguageSelector />
       <div className="mainContainer">
-      <Header />
       <TaskForm onAdd={addTask}/>
+      <Header />
       <TaskList tasks={sortedTasks} onDelete={deleteTask} onToggle={toggleTask}/>
        </div>
     </>

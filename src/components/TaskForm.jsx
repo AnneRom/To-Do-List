@@ -3,7 +3,8 @@ import * as Yup from "yup";
 import styles from "./TaskForm.module.scss";
 import { useTranslation } from 'react-i18next'
 // import { MdOutlineAdd } from 'react-icons/md';
-import { FcAddRow } from "react-icons/fc";
+// import { FcAddRow } from "react-icons/fc";
+import { TbPlaylistAdd } from "react-icons/tb";
 
 
 
@@ -42,7 +43,8 @@ function TaskForm( { onAdd } ) {
                 </div>
                 <button type="submit">
                     {/* <MdOutlineAdd className={styles.addIcon} /> */}
-                    <FcAddRow className={styles.addIcon}/>
+                    <TbPlaylistAdd className={styles.addIcon}/>
+                    {/* <FcAddRow className={styles.addIcon}/> */}
                 </button>
             </div>
         <ErrorMessage name="text" component="span"/>

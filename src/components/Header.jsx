@@ -5,7 +5,7 @@ function Header() {
 
   return (
     <header>
-      <h1>{t('title')}</h1>
+      <p>{t('title')}</p>
     </header>
   );
 }
