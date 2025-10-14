@@ -34,16 +34,26 @@ header p {
 
 .task-list {
   list-style: none;
-  padding: 10px;
-  max-width: 700px;
-  margin: 0 auto;
+  // padding: 10px;
+  // max-width: 700px;
+  // margin: 0 auto;
+  @include adaptiveValue("padding", 24, 10, 0, 1400, 320);
+  @include adaptiveValue("border-radius", 16, 8, 0, 1400, 320);
+  background-color: white;
+  // background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); 
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .many-tasks 
 {
-  background-color: #ffcccc;
+  // background-color: #ffcccc;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
+  border: 1px solid rgba(255, 0, 0, 0.3);
 }
 .few-tasks {
-  background-color: #ccffcc;
+  // background-color: #ccffcc;
+  box-shadow: 0 0 12px rgba(0, 200, 0, 0.25);
+  border: 1px solid rgba(0, 200, 0, 0.3);
 }
 
 .task-item {
@@ -54,6 +64,7 @@ header p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 .high-priority {
   color: red;

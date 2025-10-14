@@ -1,3 +1,5 @@
+@use "sass:math";
+@import "../styles/mixins.scss";
 
 .langSelector {
   position: absolute;
@@ -8,18 +10,22 @@
   justify-content: center;
   align-items: center;
   color: #333;
-  width: 65px;
+  @include adaptiveValue("width", 60, 40, 0, 1400, 320);
 }
 
 .langSelector button {
   background: white;
+  width: 100%;
   border: none;
   color: inherit;
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: left;
   gap: 4px;
-  padding: 6px 12px;
+  @include adaptiveValue("font-size", 16, 12, 0, 1400, 320);
+  @include adaptiveValue("height", 30, 20, 0, 1400, 320);
+  padding: 6px;
 }
 .langSelector button.active {
   border-radius: 8px 8px 0 0;
@@ -64,11 +70,13 @@
 }
 
 .dropdown button {
-  padding: 6px 12px;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 6px;
   background: none;
   border: none;
-  text-align: center;
+  text-align: left;
   cursor: pointer;
   border-radius: 0;
 }

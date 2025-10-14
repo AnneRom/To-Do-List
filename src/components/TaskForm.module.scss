@@ -28,13 +28,17 @@
 .form input[type="datetime-local"], 
 .form input[type="time"],
 .form select {
+    appearance: none;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+
     @include adaptiveValue("padding", 12, 4, 0, 1400, 320);
     border: 1px solid #ddd;
     border-radius: 8px;
-    @include adaptiveValue("font-size", 16, 10, 0, 1400, 320);
+    @include adaptiveValue("height", 50, 30, 0, 1400, 320);
+    @include adaptiveValue("font-size", 14, 8, 0, 1400, 320);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     background-color: #fdfdfd;
-    width: 100%;
     color: #333;
 }
 
@@ -52,6 +56,21 @@
 .form select {
     @include adaptiveValue("width", 150, 60, 0, 1400, 320);
 }
+.selectWrapper {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+}
+.downIcon {
+    position: absolute;
+    @include adaptiveValue("right", 12, 4, 0, 1400, 320);
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    @include adaptiveValue("width", 16, 10, 0, 1400, 320);
+    @include adaptiveValue("height", 16, 10, 0, 1400, 320);
+    color: #666;
+}
 
 .form span {
     color: #E03636;
@@ -61,14 +80,18 @@
 
 .form button {
     background: transparent;
-    border: none;
+    // border: 1px solid #ddd;
     border-radius: 8px;
     cursor: pointer;
     @include adaptiveValue("width", 50, 30, 0, 1400, 320);
     @include adaptiveValue("height", 50, 30, 0, 1400, 320);
-    padding: 2px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; 
+    overflow: hidden;
 }
 .form button:hover {
     border-color: #d9e7ff;
@@ -76,6 +99,8 @@
     outline: none;
 }
 .addIcon {
-    @include adaptiveValue("font-size", 46, 26, 0, 1400, 320);
-    color: #333;
+    @include adaptiveValue("width", 50, 30, 0, 1400, 320);
+    @include adaptiveValue("height", 50, 30, 0, 1400, 320);
+    // @include adaptiveValue("font-size", 46, 26, 0, 1400, 320);
+    color: rgb(164, 212, 180);
 }

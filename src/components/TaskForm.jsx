@@ -2,9 +2,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./TaskForm.module.scss";
 import { useTranslation } from 'react-i18next'
-// import { MdOutlineAdd } from 'react-icons/md';
-// import { FcAddRow } from "react-icons/fc";
-import { TbPlaylistAdd } from "react-icons/tb";
+import { ChevronDown } from 'lucide-react';
+// import { MdOutlineLibraryAddCheck } from "react-icons/md";
+import { BsPlusSquareFill } from "react-icons/bs";
 
 
 
@@ -31,20 +31,21 @@ function TaskForm( { onAdd } ) {
                 </div>
                 <div className={styles.formField}>
                     <label htmlFor="priority">{t('priority')}:</label>
-                    <Field as="select" name="priority">
-                        <option value="High">{t('priorityHigh')}</option>
-                        <option value="Medium">{t('priorityMedium')}</option>
-                        <option value="Low">{t('priorityLow')}</option>
-                    </Field>
+                    <div className={styles.selectWrapper}>
+                        <Field as="select" name="priority">
+                            <option value="High">{t('priorityHigh')}</option>
+                            <option value="Medium">{t('priorityMedium')}</option>
+                            <option value="Low">{t('priorityLow')}</option>
+                        </Field>
+                        <ChevronDown className={styles.downIcon} />
+                    </div>
                 </div>
                 <div className={styles.formField}>
                     <label htmlFor="deadline">{t('dateTime')}:</label>
                     <Field type="datetime-local" name="deadline" /> 
                 </div>
                 <button type="submit">
-                    {/* <MdOutlineAdd className={styles.addIcon} /> */}
-                    <TbPlaylistAdd className={styles.addIcon}/>
-                    {/* <FcAddRow className={styles.addIcon}/> */}
+                    <BsPlusSquareFill className={styles.addIcon}/>
                 </button>
             </div>
         <ErrorMessage name="text" component="span"/>
