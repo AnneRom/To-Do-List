@@ -15,14 +15,14 @@ function TaskItem( { task, onDelete, onToggle } ) {
     const isOverdue = deadlineDate && !task.completed && deadlineDate < now;
   
     return (
-    <li className="task-item">
+    <li className={clsx("task-item", 
+            task.priority === "High" && "high-priority",
+            task.priority === "Medium" && "medium-priority",
+            task.priority === "Low" && "low-priority")}>
         <input type="checkbox" checked={task.completed} onChange={onToggle}/>
          {/* аналог if-else */}
          <p className={clsx(
-            task.completed && "completed",
-            task.priority === "High" && "high-priority",
-            task.priority === "Medium" && "medium-priority",
-            task.priority === "Low" && "low-priority"
+            task.completed && "completed"
          )}>
             {task.text}
          </p>
