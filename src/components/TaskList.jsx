@@ -20,7 +20,7 @@ function TaskList( {tasks, onDelete , onToggle} ) {
             />
         ))}  
 
-        {tasks.length >= 3 && <p className="notify">{t('fewTasks')}</p>}
+        {tasks.length >= 10 && <p className="notify">{t('fewTasks')}</p>}
     </ul>
   );
 }
