@@ -57,7 +57,7 @@ header p {
   justify-content: space-between;
   align-items: center;
   gap: toRem(10);
-  word-break: break-word;
+  // word-break: break-word;
   @include adaptiveValue("font-size", 16, 12, 0, 1400, 320);
 }
 .task-item:not(:last-child) {
