@@ -1,12 +1,14 @@
 import clsx from "clsx";
 import TaskItem from "./TaskItem";
+import { useTranslation } from 'react-i18next';
 
 function TaskList( {tasks, onDelete , onToggle} ) {
+  const { t } = useTranslation()
   return (
     <ul className={clsx("task-list", tasks.length >= 10 ? "many-tasks" : "few-tasks")}>
 
         {/* аналог if */}
-        {tasks.length === 0 && <p>No tasks available</p>}
+        {tasks.length === 0 && <p className="notify">{t('manyTasks')}</p>}
 
         {tasks.map((task) => ( 
             <TaskItem 
@@ -18,7 +20,7 @@ function TaskList( {tasks, onDelete , onToggle} ) {
             />
         ))}  
 
-        {tasks.length >= 10 && <p>You have a lot of tasks!</p>}
+        {tasks.length >= 3 && <p className="notify">{t('fewTasks')}</p>}
     </ul>
   );
 }

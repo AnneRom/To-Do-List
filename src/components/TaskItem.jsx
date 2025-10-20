@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { MdDelete } from "react-icons/md";
 
 function TaskItem( { task, onDelete, onToggle } ) {
     const deadlineDate = task.deadline ? new Date(task.deadline) : null;
@@ -29,7 +30,7 @@ function TaskItem( { task, onDelete, onToggle } ) {
             "deadline",
             isOverdue && "overdue"
          )}>{formattedDeadline}</div>}
-        <button onClick={onDelete}>Delete</button>
+        <button className="deleteBtn" onClick={onDelete}><MdDelete className="deleteIcon"/></button>
     </li>
   );
 }
