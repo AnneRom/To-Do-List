@@ -20,7 +20,8 @@ function App() {
       try {
         const parsedTasks = JSON.parse(savedTasks);
         console.log("Parsed tasks:", JSON.parse(savedTasks));
-        setTasks(parsedTasks); 
+        // setTasks(parsedTasks); 
+        setTasks(sortTasks(parsedTasks));
         return
       } catch (e) {
         console.error("Failed to parse tasks from localStorage:", e);
@@ -32,7 +33,8 @@ function App() {
         const response = await axios.get(
         "https://my-json-server.typicode.com/AnneRom/TO-DO-LIST-API/tasks"
         );
-        setTasks(response.data);
+        // setTasks(response.data);
+        setTasks(sortTasks(response.data));
       } catch (e) {
         console.error("Error fetching tasks:", e);
       }
@@ -62,7 +64,8 @@ function App() {
       completed: false,
       deadline
      };
-     setTasks([...tasks, newTask]);
+    //  setTasks([...tasks, newTask]);
+    setTasks(sortTasks([...tasks, newTask]));
   }
 
   const deleteTask = (id) => {
@@ -79,19 +82,34 @@ function App() {
     Medium: 2,
     Low: 3
   };
-  const sortedTasks = [...tasks].sort((a, b) => {
+  // const sortedTasks = [...tasks].sort((a, b) => {
+  //   if (a.completed !== b.completed) {
+  //     return a.completed ? 1 : -1; 
+  //   }
+
+  //   if (a.deadline && b.deadline) {
+  //     return new Date(a.deadline) - new Date(b.deadline);
+  //   } else if (a.deadline !== b.deadline) {
+  //     return a.deadline ? -1 : 1; 
+  //   } 
+
+  //   return order[a.priority] - order[b.priority];
+  // });
+  const sortTasks = (list) => {
+  return [...list].sort((a, b) => {
     if (a.completed !== b.completed) {
-      return a.completed ? 1 : -1; 
+      return a.completed ? 1 : -1;
     }
 
     if (a.deadline && b.deadline) {
       return new Date(a.deadline) - new Date(b.deadline);
     } else if (a.deadline !== b.deadline) {
-      return a.deadline ? -1 : 1; 
-    } 
+      return a.deadline ? -1 : 1;
+    }
 
     return order[a.priority] - order[b.priority];
   });
+};
 
 
   return (
@@ -100,7 +118,7 @@ function App() {
       <div className="mainContainer">
       <TaskForm onAdd={addTask}/>
       <Header />
-      <TaskList tasks={sortedTasks} onDelete={deleteTask} onToggle={toggleTask}/>
+      <TaskList tasks={tasks} onDelete={deleteTask} onToggle={toggleTask}/>
        </div>
     </>
   )
