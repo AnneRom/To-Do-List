@@ -15,7 +15,7 @@ const LanguageSelector = () => {
   ];
 
   //
-  const currentLang = i18n.language || 'en';
+  const currentLang = i18n.language || 'ua';
 
   const toggleDropdown = () => setOpen((prev) => !prev);
 
