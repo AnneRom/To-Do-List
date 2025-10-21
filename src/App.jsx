@@ -18,6 +18,7 @@ const order = {
     if (a.completed !== b.completed) {
       return a.completed ? 1 : -1;
     }
+    
 
     if (a.deadline && b.deadline) {
       return new Date(a.deadline) - new Date(b.deadline);
@@ -34,6 +35,9 @@ function App() {
     // { id: 1, text: "Learn React", priority: "High", completed: false },
   ]);
 
+  useEffect(() => {
+    setTasks(prev => sortTasks(prev));
+  }, []);
 
 
   useEffect(() => {
