@@ -7,10 +7,34 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import LanguageSelector from './components/LanguageSelector'
 
+const order = {
+    High: 1,
+    Medium: 2,
+    Low: 3
+  };
+  
+  const sortTasks = (list) => {
+  return [...list].sort((a, b) => {
+    if (a.completed !== b.completed) {
+      return a.completed ? 1 : -1;
+    }
+
+    if (a.deadline && b.deadline) {
+      return new Date(a.deadline) - new Date(b.deadline);
+    } else if (a.deadline !== b.deadline) {
+      return a.deadline ? -1 : 1;
+    }
+
+    return order[a.priority] - order[b.priority];
+  });
+};
+
 function App() {
   const [tasks, setTasks] = useState([
     // { id: 1, text: "Learn React", priority: "High", completed: false },
   ]);
+
+
 
   useEffect(() => {
     const savedTasks = localStorage.getItem("tasks");
@@ -65,51 +89,24 @@ function App() {
       deadline
      };
     //  setTasks([...tasks, newTask]);
-    setTasks(sortTasks([...tasks, newTask]));
+    // setTasks(sortTasks([...tasks, newTask]));
+    setTasks(prevTasks => sortTasks([...prevTasks, newTask]));
   }
 
   const deleteTask = (id) => {
-    setTasks(tasks.filter(task => task.id !== id));
+    // setTasks(tasks.filter(task => task.id !== id));
+    setTasks(prev => sortTasks(prev.filter(task => task.id !== id)));
   }
   const toggleTask = (id) => {
-    setTasks(tasks.map(task => 
+    // setTasks(tasks.map(task => 
+    //   task.id === id ? { ...task, completed: !task.completed } : task
+    // ));
+    setTasks(prev => sortTasks(
+    prev.map(task =>
       task.id === id ? { ...task, completed: !task.completed } : task
-    ));
+    )
+  ));
   }
-
-  const order = {
-    High: 1,
-    Medium: 2,
-    Low: 3
-  };
-  // const sortedTasks = [...tasks].sort((a, b) => {
-  //   if (a.completed !== b.completed) {
-  //     return a.completed ? 1 : -1; 
-  //   }
-
-  //   if (a.deadline && b.deadline) {
-  //     return new Date(a.deadline) - new Date(b.deadline);
-  //   } else if (a.deadline !== b.deadline) {
-  //     return a.deadline ? -1 : 1; 
-  //   } 
-
-  //   return order[a.priority] - order[b.priority];
-  // });
-  const sortTasks = (list) => {
-  return [...list].sort((a, b) => {
-    if (a.completed !== b.completed) {
-      return a.completed ? 1 : -1;
-    }
-
-    if (a.deadline && b.deadline) {
-      return new Date(a.deadline) - new Date(b.deadline);
-    } else if (a.deadline !== b.deadline) {
-      return a.deadline ? -1 : 1;
-    }
-
-    return order[a.priority] - order[b.priority];
-  });
-};
 
 
   return (
