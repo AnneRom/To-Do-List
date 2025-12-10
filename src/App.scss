@@ -20,10 +20,10 @@ body {
   color: #333;
   position: relative;
 }
-header {
+.task-title {
    @include adaptiveValue("margin-bottom", 8, 4, 0, 1400, 320);
 }
-header p {
+.task-title p {
   text-align: left;
   font-weight: 600;
   margin: 0;

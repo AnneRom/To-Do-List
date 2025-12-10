@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown } from 'lucide-react';
-import styles from './LanguageSelector.module.scss';
+import styles from '../../styles/LanguageSelector.module.scss';
 import clsx from 'clsx';
 
 const LanguageSelector = () => {

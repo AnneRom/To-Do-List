@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import styles from "./TaskForm.module.scss";
+import styles from "../../styles/TaskForm.module.scss";
 import { useTranslation } from 'react-i18next'
 import { ChevronDown } from 'lucide-react';
 // import { MdOutlineLibraryAddCheck } from "react-icons/md";

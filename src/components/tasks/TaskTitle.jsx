@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
 
-function Header() {
+function TaskTitle() {
   const { t } = useTranslation();
 
   return (
-    <header>
+    <div className="task-title">
       <p>{t('title')}</p>
-    </header>
+    </div>
   );
 }
 
-export default Header;
+export default TaskTitle;
