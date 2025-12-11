@@ -7,7 +7,12 @@ import NotFound from '../pages/NotFound';
 const AppRouter = () => {
   return (
     <Routes> 
-        
+        <Route path="/" element={<MainLayout />}>
+            <Route index element={<Home />} />
+            <Route path="tasks" element={<Tasks />} />
+            <Route path="*" element={<NotFound />} />
+        </Route>
+
     </Routes>
   );
 };
