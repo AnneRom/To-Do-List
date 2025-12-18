@@ -12,7 +12,10 @@ const Tasks = () => {
   ]);
     const [searchParams, setSearchParams] = useSearchParams();
     const status = searchParams.get("status") || "all";
-    const priority = searchParams.get("priority") || "all";
+
+    const priority = searchParams.get("priority");
+    const selectedPriorities = priority ? priority.split(",") : [];
+    
     const sort = searchParams.get("sort") || "deadline";
     const order = {
         High: 1,
@@ -187,11 +190,11 @@ const Tasks = () => {
                  <select 
                 value={sort} 
                 onChange={(e) => updateFilters('sort', e.target.value)}>
-                    <option value="deadline">за терміном</option>
+                    <option value="deadline">за дедлайном</option>
                     <option value="added">за датою додавання</option>
                     <option value="priority">за пріоритетом</option>
                 </select>
-                Додали два фільтра до списку завдань та вибір сортування, поміняли структуру рендеру списку: стан -> фільтр - > сортування -> рендер.
+            
 
 
 
