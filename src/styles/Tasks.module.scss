@@ -1,0 +1,13 @@
+@use "sass:math";
+@import "../styles/mixins.scss";
+
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    @include adaptiveValue("gap", 25, 10, 0, 600, 320);
+    margin-bottom: 20px;
+}
+.priorityFilters {
+
+}

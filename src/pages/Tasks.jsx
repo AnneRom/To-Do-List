@@ -15,7 +15,7 @@ const Tasks = () => {
 
     const priority = searchParams.get("priority");
     const selectedPriorities = priority ? priority.split(",") : [];
-    
+
     const sort = searchParams.get("sort") || "deadline";
     const order = {
         High: 1,
@@ -112,11 +112,15 @@ const Tasks = () => {
     if (status === "incomplete") return !item.completed;
     return true;
   })
+  // .filter(item => {
+  //   if (priority === "high") return item.priority === "High";
+  //   if (priority === "medium") return item.priority === "Medium";
+  //   if (priority === "low") return item.priority === "Low";
+  //   return true;
+  // })
   .filter(item => {
-    if (priority === "high") return item.priority === "High";
-    if (priority === "medium") return item.priority === "Medium";
-    if (priority === "low") return item.priority === "Low";
-    return true;
+    if (selectedPriorities.length === 0) return true;
+    return selectedPriorities.includes(item.priority);
   })
 
   const sortTasks = [...filtered].sort((a, b) => {
@@ -150,7 +154,25 @@ const Tasks = () => {
     // 3. Застосовуємо зміни до URL
     setSearchParams(updatedParams); 
   }
-  const [priorityFilter, setPriorityFilter] = useState([]);
+  const togglePriority = (value) => {
+    console.log(selectedPriorities);
+
+    const updated = selectedPriorities.includes(value)
+      ? selectedPriorities.filter(p => p !== value)
+      : [...selectedPriorities, value];
+
+      console.log(selectedPriorities);
+    
+      const params = new URLSearchParams(searchParams);
+
+      if (updated.length > 0) {
+        params.set("priority", updated.join(","));
+      } else {
+        params.delete("priority");
+      }
+
+      setSearchParams(params);
+  }
 
     return (
         <div className="mainContainer">
@@ -162,30 +184,32 @@ const Tasks = () => {
                     <option value="completed">Виконані</option>
                     <option value="incomplete">Невиконані</option>
                 </select>
-                <label><input type="checkbox"
-                value={priority}
-                checked={priorityFilter.includes('High')}
-                onChange={(e) => updateFilters('priority', e.target.value)}
+
+                <div className={styles.priorityFilters}>
+                  <label><input type="checkbox"
+                checked={selectedPriorities.includes('High')}
+                onChange={() => togglePriority('High')}
                  /> High</label>
 
                 <label><input type="checkbox"
-                value={priority}
-                checked={priorityFilter.includes('Medium')}
-                onChange={(e) => updateFilters('priority', e.target.value)} /> Medium</label>
+                checked={selectedPriorities.includes('Medium')}
+                onChange={() => togglePriority('Medium')} 
+                /> Medium</label>
 
                 <label><input type="checkbox"
-                value={priority}
-                checked={priorityFilter.includes('Low')}
-                onChange={(e) => updateFilters('priority', e.target.value)} /> Low</label>
+                checked={selectedPriorities.includes('Low')}
+                onChange={() => togglePriority('Low')} /> Low</label>
+                </div>
                 
-                <select 
+                
+                {/* <select 
                 value={priority} 
                 onChange={(e) => updateFilters('priority', e.target.value)}>
                     <option value="all">All</option>
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
-                </select>
+                </select> */}
 
                  <select 
                 value={sort} 
@@ -193,13 +217,9 @@ const Tasks = () => {
                     <option value="deadline">за дедлайном</option>
                     <option value="added">за датою додавання</option>
                     <option value="priority">за пріоритетом</option>
-                </select>
-            
-
-
-
-                
+                </select>   
             </div>
+
             <TaskForm onAdd={addTask}/>
             <TaskTitle />
             <TaskList tasks={sortTasks} onDelete={deleteTask} onToggle={toggleTask}/>
