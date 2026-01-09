@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import styles from "../styles/Tasks.module.scss";
 import { useSearchParams } from "react-router-dom";
+import Filters from '../components/filters/Filters'
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([
@@ -112,12 +113,6 @@ const Tasks = () => {
     if (status === "incomplete") return !item.completed;
     return true;
   })
-  // .filter(item => {
-  //   if (priority === "high") return item.priority === "High";
-  //   if (priority === "medium") return item.priority === "Medium";
-  //   if (priority === "low") return item.priority === "Low";
-  //   return true;
-  // })
   .filter(item => {
     if (selectedPriorities.length === 0) return true;
     return selectedPriorities.includes(item.priority);
@@ -161,7 +156,7 @@ const Tasks = () => {
       ? selectedPriorities.filter(p => p !== value)
       : [...selectedPriorities, value];
 
-      console.log(selectedPriorities);
+      console.log(updated);
     
       const params = new URLSearchParams(searchParams);
 
@@ -176,50 +171,16 @@ const Tasks = () => {
 
     return (
         <div className="mainContainer">
-            <div className={styles.filters}>
-                <select 
-                value={status} 
-                onChange={(e) => updateFilters('status', e.target.value)}>
-                    <option value="all">Всі</option>
-                    <option value="completed">Виконані</option>
-                    <option value="incomplete">Невиконані</option>
-                </select>
 
-                <div className={styles.priorityFilters}>
-                  <label><input type="checkbox"
-                checked={selectedPriorities.includes('High')}
-                onChange={() => togglePriority('High')}
-                 /> High</label>
-
-                <label><input type="checkbox"
-                checked={selectedPriorities.includes('Medium')}
-                onChange={() => togglePriority('Medium')} 
-                /> Medium</label>
-
-                <label><input type="checkbox"
-                checked={selectedPriorities.includes('Low')}
-                onChange={() => togglePriority('Low')} /> Low</label>
-                </div>
-                
-                
-                {/* <select 
-                value={priority} 
-                onChange={(e) => updateFilters('priority', e.target.value)}>
-                    <option value="all">All</option>
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
-                </select> */}
-
-                 <select 
-                value={sort} 
-                onChange={(e) => updateFilters('sort', e.target.value)}>
-                    <option value="deadline">за дедлайном</option>
-                    <option value="added">за датою додавання</option>
-                    <option value="priority">за пріоритетом</option>
-                </select>   
-            </div>
-
+            <Filters 
+              status={status}
+              sort={sort}
+              updateFilters={updateFilters}
+              selectedPriorities={selectedPriorities}
+              searchParams={searchParams}
+              setSearchParams={setSearchParams}
+              togglePriority={togglePriority}
+            />
             <TaskForm onAdd={addTask}/>
             <TaskTitle />
             <TaskList tasks={sortTasks} onDelete={deleteTask} onToggle={toggleTask}/>
