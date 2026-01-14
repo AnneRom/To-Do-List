@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { MdDelete } from "react-icons/md";
+import styles from "../../styles/Tasks.module.scss";
 
 function TaskItem( { task, onDelete, onToggle } ) {
     const deadlineDate = task.deadline ? new Date(task.deadline) : null;
@@ -15,22 +16,22 @@ function TaskItem( { task, onDelete, onToggle } ) {
     const isOverdue = deadlineDate && !task.completed && deadlineDate < now;
   
     return (
-    <li className={clsx("task-item", 
-            task.priority === "High" && "high-priority",
-            task.priority === "Medium" && "medium-priority",
-            task.priority === "Low" && "low-priority")}>
+    <li className={clsx(styles.taskItem, 
+            task.priority === "High" && styles.highPriority,
+            task.priority === "Medium" && styles.mediumPriority,
+            task.priority === "Low" && styles.lowPriority)}>
         <input type="checkbox" checked={task.completed} onChange={onToggle}/>
          {/* аналог if-else */}
          <p className={clsx(
-            task.completed && "completed"
+            task.completed && styles.completed
          )}>
             {task.text}
          </p>
         {formattedDeadline && <div className={clsx(
-            "deadline",
-            isOverdue && "overdue"
+            styles.deadline,
+            isOverdue && styles.overdue
          )}>{formattedDeadline}</div>}
-        <button className="deleteBtn" onClick={onDelete}><MdDelete className="deleteIcon"/></button>
+        <button className={styles.deleteBtn} onClick={onDelete}><MdDelete className={styles.deleteIcon}/></button>
     </li>
   );
 }

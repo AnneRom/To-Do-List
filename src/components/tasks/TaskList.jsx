@@ -1,14 +1,15 @@
 import clsx from "clsx";
 import TaskItem from "./TaskItem";
 import { useTranslation } from 'react-i18next';
+import styles from "../../styles/Tasks.module.scss";
 
 function TaskList( {tasks, onDelete , onToggle} ) {
   const { t } = useTranslation()
   return (
-    <ul className={clsx("task-list", tasks.length >= 10 ? "many-tasks" : "few-tasks")}>
+    <ul className={clsx(styles.taskList, tasks.length >= 10 ? styles.manyTasks : styles.fewTasks)}>
 
         {/* аналог if */}
-        {tasks.length === 0 && <p className="notify">{t('manyTasks')}</p>}
+        {tasks.length === 0 && <p className={styles.notify}>{t('manyTasks')}</p>}
 
         {tasks.map((task) => ( 
             <TaskItem 
@@ -20,7 +21,7 @@ function TaskList( {tasks, onDelete , onToggle} ) {
             />
         ))}  
 
-        {tasks.length >= 10 && <p className="notify">{t('fewTasks')}</p>}
+        {tasks.length >= 10 && <p className={styles.notify}>{t('fewTasks')}</p>}
     </ul>
   );
 }

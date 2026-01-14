@@ -1,13 +1,112 @@
 @use "sass:math";
 @import "../styles/mixins.scss";
 
-.filters {
+.taskTitle {
+   @include adaptiveValue("margin-bottom", 8, 4, 0, 1400, 320);
+}
+.taskTitle p {
+  text-align: left;
+  font-weight: 600;
+  margin: 0;
+  opacity: 0.6;
+  @include adaptiveValue("font-size", 12, 8, 0, 1400, 320);
+  @include adaptiveValue("padding", 24, 10, 0, 1400, 320);
+}
+
+.taskList {
+  list-style: none;
+  @include adaptiveValue("padding", 24, 10, 0, 1400, 320);
+  @include adaptiveValue("border-radius", 16, 8, 0, 1400, 320);
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); 
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.manyTasks 
+{
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+.fewTasks {
+  box-shadow: 0 0 12px rgba(0, 200, 0, 0.25);
+  border: 1px solid rgba(0, 200, 0, 0.3);
+}
+
+.taskItem {
+  // border-bottom: 1px solid rgba(0, 200, 0, 0.3);
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: toRem(10);
+  word-break: break-word;
+  @include adaptiveValue("font-size", 16, 12, 0, 1400, 320);
+}
+.taskItem:not(:last-child) {
+  margin-bottom: toRem(10);
+}
+
+.highPriority {
+  position: relative;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+.mediumPriority {
+  position: relative;
+  background-color: rgba(255, 165, 0, 0.1);
+}
+.lowPriority {
+  position: relative;
+  background-color: rgba(0, 200, 0, 0.1)
+}
+.completed {
+  text-decoration: line-through;
+  color: gray;
+  opacity: 0.7;
+}
+
+.deadline {
+  font-size: 0.8rem;
+  color: #555;
+}
+.overdue {
+  color: red;
+  font-weight: bold;
+}
+
+.deleteBtn {
+    background: rgb(164, 212, 180);
+    border-radius: 8px;
+    cursor: pointer;
+    @include adaptiveValue("width", 50, 30, 0, 1400, 320);
+    @include adaptiveValue("height", 50, 30, 0, 1400, 320);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    @include adaptiveValue("gap", 25, 10, 0, 600, 320);
-    margin-bottom: 20px;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0; 
+    overflow: hidden;
 }
+.deleteBtn:hover {
+    border-color: #d9e7ff;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    outline: none;
+}
+.deleteIcon {
+    @include adaptiveValue("width", 30, 20, 0, 1400, 320);
+    @include adaptiveValue("height", 30, 20, 0, 1400, 320);
+    // @include adaptiveValue("font-size", 46, 26, 0, 1400, 320);
+    color: white;
+}
+
+.notify {
+  text-align: center;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.6;
+  @include adaptiveValue("font-size", 16, 12, 0, 1400, 320);
+}
+
+
 .priorityFilters {
 
 }
