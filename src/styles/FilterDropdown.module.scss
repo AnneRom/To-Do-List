@@ -1,0 +1,65 @@
+@use "sass:math";
+@import "./mixins.scss";
+
+.dropdownWrapper {
+  position: relative;
+}
+
+.dropdownButton{
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include adaptiveValue("gap", 8, 4, 0, 1400, 320);
+  @include adaptiveValue("padding", 12, 6, 0, 1400, 320);
+  @include adaptiveValue("min-width", 140, 100, 0, 1400, 320);
+
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.dropdownButton:hover {
+  border-color: #d9e7ff;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
+}
+
+.active {
+  border-radius: 8px 8px 0 0;
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.iconOpen {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+
+  background: white;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-5px);
+  overflow: hidden;
+
+  transition: all 0.3s ease;
+  z-index: 20;
+}
+
+.open {
+  max-height: 300px;
+  opacity: 1;
+  transform: translateY(0);
+}
