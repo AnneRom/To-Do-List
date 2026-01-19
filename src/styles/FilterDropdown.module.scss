@@ -8,6 +8,7 @@
 .dropdownButton{
   background: white;
   border: 1px solid #ddd;
+  color: #333;
   border-radius: 8px;
   cursor: pointer;
 
@@ -16,10 +17,12 @@
   justify-content: space-between;
 
   @include adaptiveValue("gap", 8, 4, 0, 1400, 320);
-  @include adaptiveValue("padding", 12, 6, 0, 1400, 320);
-  @include adaptiveValue("min-width", 140, 100, 0, 1400, 320);
-
+  @include adaptiveValue("padding", 12, 4, 0, 1400, 320);
+  @include adaptiveValue("min-width", 120, 90, 0, 1400, 320);
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  @include adaptiveValue("height", 50, 30, 0, 1400, 320);
+  @include adaptiveValue("font-size", 14, 8, 0, 1400, 320);
+  font-weight: 400;
 }
 
 .dropdownButton:hover {
@@ -32,7 +35,10 @@
 }
 
 .icon {
-  transition: transform 0.3s ease;
+    @include adaptiveValue("width", 16, 10, 0, 1400, 320);
+    @include adaptiveValue("height", 16, 10, 0, 1400, 320);
+    color: #666;
+    transition: transform 0.3s ease;
 }
 
 .iconOpen {
@@ -62,4 +68,7 @@
   max-height: 300px;
   opacity: 1;
   transform: translateY(0);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  
 }

@@ -1,0 +1,15 @@
+@use "sass:math";
+@import "./mixins.scss";
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: toRem(4);
+
+    @include adaptiveValue("padding", 12, 4, 0, 1400, 320);
+    @include adaptiveValue("font-size", 14, 8, 0, 1400, 320);
+    width: 100%;
+}
+.option:hover {
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
+}

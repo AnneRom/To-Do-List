@@ -8,41 +8,16 @@
     @include adaptiveValue("gap", 25, 10, 0, 600, 320);
     margin-bottom: 20px;
 }
-.select {
-    appearance: none;
-    -webkit-appearance: none; 
-    -moz-appearance: none;
+.option {
+    display: flex;
+    align-items: center;
+    gap: toRem(4);
 
     @include adaptiveValue("padding", 12, 4, 0, 1400, 320);
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    @include adaptiveValue("height", 50, 30, 0, 1400, 320);
     @include adaptiveValue("font-size", 14, 8, 0, 1400, 320);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    background-color: #fdfdfd;
-    color: #333;
-    @include adaptiveValue("min-width", 120, 90, 0, 1400, 320);
+    width: 100%;
 }
-.select:focus {
-    border-color: #d9e7ff;
-    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
-    outline: none;
+.option:hover {
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
 }
-.select {
-    @include adaptiveValue("width", 150, 60, 0, 1400, 320);
-}
-.selectWrapper {
-    position: relative;
-    display: inline-block;
-    width: fit-content;
-}
-.downIcon {
-    position: absolute;
-    @include adaptiveValue("right", 12, 4, 0, 1400, 320);
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    @include adaptiveValue("width", 16, 10, 0, 1400, 320);
-    @include adaptiveValue("height", 16, 10, 0, 1400, 320);
-    color: #666;
-}
+
