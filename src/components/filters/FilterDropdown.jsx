@@ -9,7 +9,7 @@ const FilterDropdown = ({ label, children, mode = "default" }) => {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (ref.current && !ref.current.contains(event.target)) {
+            if (ref.current && !ref.current.contains(event.target) && mode === "default") {
                 setOpen(false);
             }
         };
@@ -23,13 +23,13 @@ const FilterDropdown = ({ label, children, mode = "default" }) => {
         <div ref={ref} className={styles.dropdownWrapper}>
             <button
                 type="button"
-                className={clsx(styles.dropdownButton, open && styles.active)}
+                className={clsx(styles.dropdownButton, open && styles.active, mode === "inline" && styles.inlineBtn)}
                 onClick={() => setOpen(!open)}
             >
                 <span>{label}</span>
                 <ChevronDown className={clsx(styles.icon, open && styles.iconOpen)} />
             </button>
-            <div className={clsx(styles.dropdown, open && styles.open, mode === "inline" && styles.inline)}>
+            <div className={clsx(styles.dropdown, open && styles.open, mode === "inline" && open && styles.inline)}>
                 {children}
             </div>
         </div>

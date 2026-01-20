@@ -33,6 +33,9 @@
 .active {
   border-radius: 8px 8px 0 0;
 }
+.inlineBtn {
+  border-radius: 0;
+}
 
 .icon {
     @include adaptiveValue("width", 16, 10, 0, 1400, 320);
