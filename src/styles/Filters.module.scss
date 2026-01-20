@@ -16,6 +16,7 @@
     @include adaptiveValue("padding", 12, 4, 0, 1400, 320);
     @include adaptiveValue("font-size", 14, 8, 0, 1400, 320);
     width: 100%;
+    text-align: left;
 }
 .option:hover {
   box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);

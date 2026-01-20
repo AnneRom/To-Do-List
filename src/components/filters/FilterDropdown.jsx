@@ -3,7 +3,7 @@ import styles from "../../styles/FilterDropdown.module.scss";
 import clsx from "clsx";
 import { useState, useRef, useEffect } from "react";
 
-const FilterDropdown = ({ label, children }) => {
+const FilterDropdown = ({ label, children, mode = "default" }) => {
     const [open, setOpen] = useState(false);
     const ref = useRef(null);
 
@@ -29,7 +29,7 @@ const FilterDropdown = ({ label, children }) => {
                 <span>{label}</span>
                 <ChevronDown className={clsx(styles.icon, open && styles.iconOpen)} />
             </button>
-            <div className={clsx(styles.dropdown, open && styles.open)}>
+            <div className={clsx(styles.dropdown, open && styles.open, mode === "inline" && styles.inline)}>
                 {children}
             </div>
         </div>

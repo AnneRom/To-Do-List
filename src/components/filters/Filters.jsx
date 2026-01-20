@@ -6,7 +6,8 @@ import FilterDropdown from "./FilterDropdown";
 const Filters = ({ status, sort, updateFilters, selectedPriorities, searchParams, setSearchParams, togglePriority }) => {
   return (
     <div className={styles.filters}>
-      <FilterDropdown label="Статус">
+      <FilterDropdown label="Фільтри">
+        <FilterDropdown label="Статус" mode="inline">
         <label className={styles.option}>
           <input type="radio"
           checked={status === "all"}
@@ -36,6 +37,8 @@ const Filters = ({ status, sort, updateFilters, selectedPriorities, searchParams
         setSearchParams={setSearchParams}
         togglePriority={togglePriority}
       />
+      </FilterDropdown>
+      
 
       <FilterDropdown label="Сортувати за">
         <label className={styles.option}>
@@ -43,21 +46,21 @@ const Filters = ({ status, sort, updateFilters, selectedPriorities, searchParams
           checked={sort === "deadline"}
           onChange={() => updateFilters('sort', 'deadline')}
            />
-          За дедлайном
+          Дедлайном
         </label>
         <label className={styles.option}>
           <input type="radio"
           checked={sort === "added"}
           onChange={() => updateFilters('sort', 'added')}
            />
-          За датою додавання
+          Датою додавання
         </label>
         <label className={styles.option}>
           <input type="radio"
           checked={sort === "priority"}
           onChange={() => updateFilters('sort', 'priority')}
            />
-          За пріоритетом
+          Пріоритетом
         </label>
       </FilterDropdown>
                    

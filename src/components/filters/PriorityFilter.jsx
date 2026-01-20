@@ -4,7 +4,7 @@ import FilterDropdown from "./FilterDropdown";
 const PriorityFilter = ({ selectedPriorities, searchParams, setSearchParams, togglePriority }) => {
   
   return (
-    <FilterDropdown label="Пріоритетність">
+    <FilterDropdown label="Пріоритетність" mode="inline">
       <label className={styles.option}>
         <input
         type="checkbox"

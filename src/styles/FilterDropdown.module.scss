@@ -18,7 +18,7 @@
 
   @include adaptiveValue("gap", 8, 4, 0, 1400, 320);
   @include adaptiveValue("padding", 12, 4, 0, 1400, 320);
-  @include adaptiveValue("min-width", 120, 90, 0, 1400, 320);
+  @include adaptiveValue("min-width", 170, 90, 0, 1400, 320);
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
   @include adaptiveValue("height", 50, 30, 0, 1400, 320);
   @include adaptiveValue("font-size", 14, 8, 0, 1400, 320);
@@ -63,9 +63,18 @@
   transition: all 0.3s ease;
   z-index: 20;
 }
+.inline {
+  position: static;
+  max-height: none;
+  opacity: 1;
+  transform: none;
+  overflow: visible;
+  box-shadow: none;
+  border-radius: 0;
+}
 
 .open {
-  max-height: 300px;
+  max-height: 700px;
   opacity: 1;
   transform: translateY(0);
   display: flex;
