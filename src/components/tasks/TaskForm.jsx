@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { ChevronDown } from 'lucide-react';
 // import { MdOutlineLibraryAddCheck } from "react-icons/md";
 import { BsPlusSquareFill } from "react-icons/bs";
+import FilterDropdown from "../filters/FilterDropdown";
 
 
 
@@ -31,14 +32,29 @@ function TaskForm( { onAdd } ) {
                 </div>
                 <div className={styles.formField}>
                     <label htmlFor="priority">{t('priority')}:</label>
-                    <div className={styles.selectWrapper}>
+                    <FilterDropdown label="Пріоритетність">
+                        <label className={styles.option}>
+                            <Field type="radio" name="priority" value="High" />
+                            {t('priorityHigh')}
+                        </label>
+                        <label className={styles.option}>
+                            <Field type="radio" name="priority" value="Medium" />
+                            {t('priorityMedium')}
+                        </label>
+                        <label className={styles.option}>
+                            <Field type="radio" name="priority" value="Low" />
+                            {t('priorityLow')}
+                        </label>
+                    </FilterDropdown>
+
+                    {/* <div className={styles.selectWrapper}>
                         <Field as="select" name="priority">
                             <option value="High">{t('priorityHigh')}</option>
                             <option value="Medium">{t('priorityMedium')}</option>
                             <option value="Low">{t('priorityLow')}</option>
                         </Field>
                         <ChevronDown className={styles.downIcon} />
-                    </div>
+                    </div> */}
                 </div>
                 <div className={styles.formField}>
                     <label htmlFor="deadline">{t('dateTime')}:</label>

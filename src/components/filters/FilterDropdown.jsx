@@ -12,6 +12,9 @@ const FilterDropdown = ({ label, children, mode = "default" }) => {
             if (ref.current && !ref.current.contains(event.target) && mode === "default") {
                 setOpen(false);
             }
+            // if (ref.current && !ref.current.contains(event.target) && mode === "inline") {
+            //     setOpen(false);
+            // }
         };
         document.addEventListener('mousedown', handleClickOutside);
         return () => {

@@ -104,3 +104,17 @@
     // @include adaptiveValue("font-size", 46, 26, 0, 1400, 320);
     color: rgb(164, 212, 180);
 }
+.option {
+    display: flex;
+    align-items: center;
+    gap: toRem(4);
+
+    @include adaptiveValue("padding", 12, 4, 0, 1400, 320);
+    @include adaptiveValue("font-size", 14, 8, 0, 1400, 320);
+    width: 100%;
+    text-align: left;
+    font-weight: 400;
+}
+.option:hover {
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
+}
