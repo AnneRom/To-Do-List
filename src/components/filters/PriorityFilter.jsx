@@ -1,10 +1,13 @@
 import styles from "../../styles/PriorityFilter.module.scss";
 import FilterDropdown from "./FilterDropdown";
+import { useTranslation } from 'react-i18next'
 
 const PriorityFilter = ({ selectedPriorities, searchParams, setSearchParams, togglePriority }) => {
   
+  const { t } = useTranslation()
+
   return (
-    <FilterDropdown label="Пріоритетність" mode="inline">
+    <FilterDropdown label={t('priority')} mode="inline">
       <label className={styles.option}>
         <input
         type="checkbox"
@@ -13,7 +16,7 @@ const PriorityFilter = ({ selectedPriorities, searchParams, setSearchParams, tog
           const params = new URLSearchParams(searchParams);
           params.delete("priority");
           setSearchParams(params);
-        }}/>Всі</label>
+        }}/> {t('all')}</label>
       
       {['High', 'Medium', 'Low'].map((level) => (
         <label key={level} className={styles.option}>
@@ -22,7 +25,7 @@ const PriorityFilter = ({ selectedPriorities, searchParams, setSearchParams, tog
             checked={selectedPriorities.includes(level)}
             onChange={() => togglePriority(level)}
           />
-          {level}
+          {t(`priority${level}`)}
         </label>
       ))}
     </FilterDropdown>

@@ -2,32 +2,36 @@ import PriorityFilter from "./PriorityFilter";
 import styles from "../../styles/Filters.module.scss";
 import { ChevronDown } from 'lucide-react';
 import FilterDropdown from "./FilterDropdown";
+import { useTranslation } from 'react-i18next'
 
 const Filters = ({ status, sort, updateFilters, selectedPriorities, searchParams, setSearchParams, togglePriority }) => {
+  
+  const { t } = useTranslation()
+
   return (
     <div className={styles.filters}>
-      <FilterDropdown label="Фільтри">
-        <FilterDropdown label="Статус" mode="inline">
+      <FilterDropdown label={t('filters')}>
+        <FilterDropdown label={t('status')} mode="inline">
         <label className={styles.option}>
           <input type="radio"
           checked={status === "all"}
           onChange={() => updateFilters('status', 'all')}
            />
-          Всі
+          {t('all')}
         </label>
         <label className={styles.option}>
           <input type="radio"
           checked={status === "completed"}
           onChange={() => updateFilters('status', 'completed')}
            />
-          Виконані
+          {t('completed')}
         </label>
         <label className={styles.option}>
           <input type="radio"
           checked={status === "incompleted"}
           onChange={() => updateFilters('status', 'incompleted')}
            />
-          Невиконані
+          {t('incomplete')}
         </label>
       </FilterDropdown>
               
@@ -40,27 +44,27 @@ const Filters = ({ status, sort, updateFilters, selectedPriorities, searchParams
       </FilterDropdown>
       
 
-      <FilterDropdown label="Сортувати за">
+      <FilterDropdown label={t('sortBy')}>
         <label className={styles.option}>
           <input type="radio"
           checked={sort === "deadline"}
           onChange={() => updateFilters('sort', 'deadline')}
            />
-          Дедлайном
+          {t('deadline')}
         </label>
         <label className={styles.option}>
           <input type="radio"
           checked={sort === "added"}
           onChange={() => updateFilters('sort', 'added')}
            />
-          Датою додавання
+          {t('creationDate')}
         </label>
         <label className={styles.option}>
           <input type="radio"
           checked={sort === "priority"}
           onChange={() => updateFilters('sort', 'priority')}
            />
-          Пріоритетом
+          {t('prioritySort')}
         </label>
       </FilterDropdown>
                    

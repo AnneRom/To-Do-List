@@ -2,10 +2,17 @@ import { ChevronDown } from 'lucide-react';
 import styles from "../../styles/FilterDropdown.module.scss";
 import clsx from "clsx";
 import { useState, useRef, useEffect } from "react";
+import { createContext, useContext } from "react";
+
+export const DropdownContext = createContext(null);
+
+export const useDropdownParent = () => useContext(DropdownContext);
 
 const FilterDropdown = ({ label, children, mode = "default" }) => {
     const [open, setOpen] = useState(false);
     const ref = useRef(null);
+
+    const parent = useDropdownParent();
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -22,7 +29,14 @@ const FilterDropdown = ({ label, children, mode = "default" }) => {
         }
     }, []);
 
+    useEffect(() => {
+    if (parent?.isOpen === false) {
+      setOpen(false);
+    }
+  }, [parent?.isOpen]);
+
     return (
+        <DropdownContext.Provider value={{ isOpen: open }}>
         <div ref={ref} className={styles.dropdownWrapper}>
             <button
                 type="button"
@@ -36,6 +50,7 @@ const FilterDropdown = ({ label, children, mode = "default" }) => {
                 {children}
             </div>
         </div>
+        </DropdownContext.Provider>
     );
 
 };

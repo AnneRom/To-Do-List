@@ -12,5 +12,16 @@
     "dateTime": "Date and Time",
     "errordeadline": "Deadline can't be in the past",
     "manyTasks": "No tasks available",
-    "fewTasks": "You have a lot of tasks!"
+    "fewTasks": "You have a lot of tasks!",
+    "sortBy": "Sort by",
+    "deadline": "Deadline",
+    "creationDate": "Creation Date",
+    "prioritySort": "Priority",
+    "filters": "Filters",
+    "status": "Status",
+    "all": "All",
+    "completed": "Completed",
+    "incomplete": "Incomplete"
+
+
 }

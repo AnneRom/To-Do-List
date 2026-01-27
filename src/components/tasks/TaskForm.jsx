@@ -32,7 +32,7 @@ function TaskForm( { onAdd } ) {
                 </div>
                 <div className={styles.formField}>
                     <label htmlFor="priority">{t('priority')}:</label>
-                    <FilterDropdown label="Пріоритетність">
+                    <FilterDropdown label={t('priority')}>
                         <label className={styles.option}>
                             <Field type="radio" name="priority" value="High" />
                             {t('priorityHigh')}
@@ -60,12 +60,12 @@ function TaskForm( { onAdd } ) {
                     <label htmlFor="deadline">{t('dateTime')}:</label>
                     <Field type="datetime-local" name="deadline" /> 
                 </div>
-                <button type="submit">
+                <button type="submit" className={styles.addButton}>
                     <BsPlusSquareFill className={styles.addIcon}/>
                 </button>
             </div>
-        <ErrorMessage name="text" component="span"/>
-        <ErrorMessage name="deadline" component="span"/>
+        <ErrorMessage name="text" component="span" className={styles.error}/>
+        <ErrorMessage name="deadline" component="span" className={styles.error}/>
         </Form>
     </Formik>
     

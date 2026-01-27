@@ -72,13 +72,13 @@
     color: #666;
 }
 
-.form span {
+.form .error {
     color: #E03636;
     font-weight: 700;
     @include adaptiveValue("font-size", 12, 8, 0, 1400, 320);
 }
 
-.form button {
+.form .addButton {
     background: transparent;
     // border: 1px solid #ddd;
     border-radius: 8px;
@@ -93,7 +93,7 @@
     padding: 0; 
     overflow: hidden;
 }
-.form button:hover {
+.form .addButton:hover {
     border-color: #d9e7ff;
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
     outline: none;
